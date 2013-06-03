@@ -1,0 +1,34 @@
+SITEGRP="webdeveloper"
+SITEUSER="your-user"
+DEPGRP="prod-deploy-group"
+BASE1="git-base"
+REPOBASE1="development"
+REPOBASE="/$BASE1/$REPOBASE1"
+DEPLOYBASE1="deploy-stage"
+DEPLOYBASE="/$BASE1/$DEPLOYBASE1"
+SERVERNAME=`hostname`
+LOCALIP="dev.yourserver.com"
+DSCRIPTS="$DEPLOYBASE/deploy-scripts"
+#
+PATH=`pwd`:$PATH
+
+#
+siteuser=`sudo -u gituser ssh gituser@$ipadd ls -l $sitebase/../ | grep cgi-bin | awk '{print $3}'`
+export siteuser
+echo "sites user is: $siteuser"
+echo "Executing Gitpush.sh"
+#
+sudo -u gituser ssh gituser@$ipadd "cd $sitebase/;sudo chmod -R 775 $sitebase;sudo git reset --hard HEAD;sudo git pull;sleep 5;sudo chmod -R 755 $sitebase;sudo chmod -R 777 $sitebase/sites/default/files;sudo chmod -R 776 $sitebase/sites/default/files/*.*;sudo chown -R $siteuser.$SITEGRP $sitebase;"
+
+sudo chgrp -R $SITEGRP $REPOBASE/*.git
+sudo chown -R $SITEUSER.$SITEGRP $DEPLOYBASE/*.git
+sudo chmod -R g+swX $DEPLOYBASE/*.git
+sudo chown -R $SITEUSER.$DEPGRP $DSCRIPTS
+sudo chmod -R 770 $DSCRIPTS
+sudo find $DEPLOYBASE -name hooks -exec chmod -R 770 {} \;
+sudo rm -Rf $DEPLOYBASE/paging/
+
+
+echo "done"
+
+

@@ -1,0 +1,26 @@
+##
+##Start .htaccess addition for git deployment##
+##
+RewriteEngine on
+RewriteCond %{HTTP_HOST} www.xxxxxxxxxx$ [NC]
+RewriteRule ^.git/ - [R=404,L]
+##
+RewriteEngine on
+RewriteCond %{HTTP_HOST} www.xxxxxxxxxx$ [NC]
+RewriteRule ^gitpull.sh/ - [R=404,L]
+##
+RewriteEngine on
+RewriteCond %{HTTP_HOST} www.xxxxxxxxxx$ [NC]
+RewriteRule ^.gitignore/ - [R=404,L]
+##
+RewriteEngine on
+RewriteCond %{HTTP_HOST} www.xxxxxxxxxx$ [NC]
+RewriteRule ^.gitmodules/ - [R=404,L]
+##
+RewriteEngine on
+RewriteCond %{HTTP_HOST} www.xxxxxxxxxx$ [NC]
+RewriteRule ^gitpull.sh/ - [R=404,L]
+##
+##End .htaccess addition for git deployment##
+## ##
+

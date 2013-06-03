@@ -1,0 +1,16 @@
+
+siteuser=`ls -l $sitebase/../ | grep cgi-bin | awk '{print $3}'`
+
+cd $sitebase
+chmod -R 775 $sitebase
+#chmod -R 775 $sitebase/wp-content/uploads
+chown -R $siteuser.$SITEGRP $sitebase
+git reset --hard HEAD
+git pull
+sleep 5
+chmod -R 755 $sitebase
+chmod 777 $sitebase/sites/default/files
+#chmod -R 775 $sitebase/wp-content/uploads
+chown -R $siteuser.$SITEGRP $sitebase
+
+
