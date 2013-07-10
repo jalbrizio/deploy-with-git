@@ -24,7 +24,7 @@ TODAYSDATE=`date`
 ##resetting variables incase there is something in memmory
 LIVLOC=""
 PRODIP=""
-DEFSERV="dev-server-hostname.com"
+DEFSERV="ncc-1701-dev.maricopa.edu"
 #optional Date variable. Uncomment if you want to use this date format and comment out the one above
 #TODAYSDATE=$(date +"$m%d%y-%H%M")
 
@@ -39,12 +39,12 @@ echo "What is the location of the repo? the base directory is $REPOBASE."
 echo "example domain_com.git"
 read REPO
 
-while [ ! -d $REPOBASE/$REPO ]
-do
-	echo ""
-	echo "$REPOBASE/$REPO does not exist. Please try again."
-	read REPO
-done
+#while [ ! -d $REPOBASE/$REPO ]
+#do
+#	echo ""
+#	echo "$REPOBASE/$REPO does not exist. Please try again."
+#	read REPO
+#done
 
 echo ""
 GD=`echo $REPO | sed s/\.git//g |sed s/\_/\./g | sed 's/\// /g' | awk '{ print $1 }'`

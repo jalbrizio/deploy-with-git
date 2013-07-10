@@ -1,13 +1,13 @@
-SITEGRP="webdev"
-SITEUSER="root"
-DEPGRP="webdev"
+SITEGRP="webdeveloper"
+SITEUSER="your-user"
+DEPGRP="dev-deploy-group"
 BASE1="git"
 REPOBASE1="development"
 REPOBASE="/$BASE1/$REPOBASE1"
 DEPLOYBASE1="deploy-stage"
 DEPLOYBASE="/$BASE1/$DEPLOYBASE1"
 SERVERNAME=`hostname`
-LOCALIP="ncc-1701-dev"
+LOCALIP="dev.yourserver.com"
 DSCRIPTS="$DEPLOYBASE/deploy-scripts"
 #
 PATH=`pwd`:$PATH
