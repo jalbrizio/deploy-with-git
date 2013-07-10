@@ -1,13 +1,13 @@
-SITEGRP="webdeveloper"
-SITEUSER="your-user"
-DEPGRP="stage-deploy-group"
-BASE1="git-base"
+SITEGRP="webdev"
+SITEUSER="root"
+DEPGRP="webdev"
+BASE1="git"
 REPOBASE1="development"
 REPOBASE="/$BASE1/$REPOBASE1"
 DEPLOYBASE1="deploy-stage"
 DEPLOYBASE="/$BASE1/$DEPLOYBASE1"
 SERVERNAME=`hostname`
-LOCALIP="dev.yourserver.com"
+LOCALIP="ncc-1701-dev"
 DSCRIPTS="$DEPLOYBASE/deploy-scripts"
 #
 PATH=`pwd`:$PATH
@@ -18,7 +18,8 @@ export siteuser
 echo "sites user is: $siteuser"
 echo "Executing Gitpush.sh"
 #
-sudo -u gituser ssh gituser@$ipadd "cd $sitebase/;sudo chmod -R 775 $sitebase;sudo git reset --hard HEAD;sudo git pull;sleep 5;sudo chmod -R 755 $sitebase;sudo chmod -R 777 $sitebase/sites/default/files;sudo chmod -R 776 $sitebase/sites/default/files/*.*;sudo chown -R $siteuser.$SITEGRP $sitebase;"
+#sudo -u gituser ssh gituser@$ipadd "cd $sitebase/;sudo chmod -R 775 $sitebase;sudo git reset --hard HEAD;sudo git pull;sleep 5;sudo chmod -R 755 $sitebase;sudo chmod -R 777 $sitebase/sites/default/files;sudo chmod -R 776 $sitebase/sites/default/files/*.*;sudo chown -R $siteuser.$SITEGRP $sitebase;"
+sudo -u gituser ssh gituser@$ipadd "cd $sitebase/;sudo chmod -R 775 $sitebase;sudo git fetch origin;sudo git reset --hard origin/master;sleep 5;sudo chmod -R 755 $sitebase;sudo chmod -R 777 $sitebase/sites/default/files;sudo chmod -R 776 $sitebase/sites/default/files/*.*;sudo chown -R $siteuser.$SITEGRP $sitebase;"
 
 sudo chgrp -R $SITEGRP $REPOBASE/*.git
 sudo chown -R $SITEUSER.$SITEGRP $DEPLOYBASE/*.git
